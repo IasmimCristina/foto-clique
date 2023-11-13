@@ -42,9 +42,9 @@ const SignupForm = () => {
 
 
 
-<div className="sm:w-420 flex-center flex-col">
-  <img src="/assets/images/logo.svg" alt="" />
-</div>
+      <div className="sm:w-420 flex-center flex-col">
+        <img src="/assets/images/logo.png" alt="Logomarca" className="   h-[160px]  max-h-[160px]" />
+      </div>
 
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
