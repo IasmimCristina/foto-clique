@@ -43,9 +43,13 @@ const SignupForm = () => {
 
 
       <div className="sm:w-420 flex-center flex-col">
-        <img src="/assets/images/logo.png" alt="Logomarca" className="   h-[160px]  max-h-[160px]" />
+        <img src="/assets/images/logo.png" alt="Logomarca" className="h-[160px] " />
+        <h2 className="h3-bold md:h2-bold pt-4 sm:pt-8 pb-2">
+          Crie uma nova conta!
+        </h2>
+        <p className="text-light-3 small-medium md:base-regular">Preencha o formulário abaixo</p>
       </div>
-
+      {/* 43:54 */}
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
