@@ -12,6 +12,7 @@ import { SignupValidation } from "@/lib/validation"
 import { z } from "zod"
 import { Loader } from "lucide-react"
 import { Link } from "react-router-dom"
+import { createUserAccount } from "@/lib/appwrite/api"
 
 
 
@@ -33,8 +34,9 @@ const SignupForm = () => {
   })
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof SignupValidation>) {
+  async function onSubmit(values: z.infer<typeof SignupValidation>) {
     const newUser = await createUserAccount(values);
+    console.log(newUser);
   }
 
 
@@ -44,16 +46,16 @@ const SignupForm = () => {
 
 
 
-      <div className="sm:w-420 flex-center flex-col">
-        <img src="/assets/images/logo.png" alt="Logomarca" className="h-[160px] " />
-        <h2 className="h3-bold md:h2-bold pt-4 sm:pt-8 pb-2">
+      <div className="sm:w-420 flex-center flex-col py-6">
+        <img src="/assets/images/logo.png" alt="Logomarca" className="lg:h-[130px] sm:h-[110px] h-[80px] md:mt-0 sm:mt-2 mt-6" />
+        <h2 className="h3-bold md:h2-bold  sm:pt-4 ">
           Crie uma nova conta!
         </h2>
 
-        <p className="text-light-3 small-medium md:base-regular">Preencha o formulário abaixo</p>
+        <p className="text-light-3 small-medium md:base-regular mb-2">Por favor, preencha o formulário abaixo</p>
 
 
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 flex flex-col gap-5 w-full mt-4">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 flex flex-col  w-full mt-2">
           <FormField
             control={form.control}
             name="name"
@@ -64,10 +66,11 @@ const SignupForm = () => {
                   <Input type="text" className="shad-input" {...field} />
                 </FormControl>
 
-                <FormMessage />
+                <FormMessage className="text-red italic" />
               </FormItem>
             )}
           />
+          
           <FormField
             control={form.control}
             name="username"
@@ -78,7 +81,21 @@ const SignupForm = () => {
                   <Input type="text" className="shad-input" {...field} />
                 </FormControl>
 
-                <FormMessage />
+                <FormMessage className="text-red italic"/>
+              </FormItem>
+            )}
+          />
+           <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>E-mail</FormLabel>
+                <FormControl>
+                  <Input type="email" className="shad-input" {...field} />
+                </FormControl>
+
+                <FormMessage className="text-red italic"/>
               </FormItem>
             )}
           />
@@ -92,7 +109,7 @@ const SignupForm = () => {
                   <Input type="password" className="shad-input" {...field} />
                 </FormControl>
 
-                <FormMessage />
+                <FormMessage className="text-red italic"/>
               </FormItem>
             )}
           />
@@ -110,8 +127,10 @@ const SignupForm = () => {
 
 
           <p className="text-small-regular text-light-2 text-center mt-2">
-            Já posssui uma conta? <Link to={"/sign-in"} className="text-primary-500">Clique aqui</Link>
+            Já posssui uma conta? <Link to={"/sign-in"} className="text-primary-500 hover:underline ease-in-out hover:font-bold">Clique aqui</Link>
           </p>
+
+          
         </form>
       </div>
     </Form>
