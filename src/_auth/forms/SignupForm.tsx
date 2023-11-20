@@ -1,9 +1,10 @@
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useToast } from "@/components/ui/use-toast"
 
 
 
 import {
-  Form, FormControl,  FormField, FormItem, FormLabel, FormMessage,
+  Form, FormControl, FormField, FormItem, FormLabel, FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Button } from '@/components/ui/button'
@@ -19,6 +20,7 @@ import { createUserAccount } from "@/lib/appwrite/api"
 
 const SignupForm = () => {
 
+  const { toast } = useToast()
   const isLoading = false;
 
   // 1. Define your form.
@@ -26,7 +28,6 @@ const SignupForm = () => {
     resolver: zodResolver(SignupValidation),
     defaultValues: {
       name: "",
-
       username: "",
       email: "",
       password: "",
@@ -36,7 +37,15 @@ const SignupForm = () => {
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof SignupValidation>) {
     const newUser = await createUserAccount(values);
-    console.log(newUser);
+    if (!newUser) {
+      return  toast({
+        title: "Falha no cadastro",
+        description: "Por favor, tente novamente.",
+      });
+    }
+
+
+   
   }
 
 
@@ -70,7 +79,7 @@ const SignupForm = () => {
               </FormItem>
             )}
           />
-          
+
           <FormField
             control={form.control}
             name="username"
@@ -81,11 +90,11 @@ const SignupForm = () => {
                   <Input type="text" className="shad-input" {...field} />
                 </FormControl>
 
-                <FormMessage className="text-red italic"/>
+                <FormMessage className="text-red italic" />
               </FormItem>
             )}
           />
-           <FormField
+          <FormField
             control={form.control}
             name="email"
             render={({ field }) => (
@@ -95,7 +104,7 @@ const SignupForm = () => {
                   <Input type="email" className="shad-input" {...field} />
                 </FormControl>
 
-                <FormMessage className="text-red italic"/>
+                <FormMessage className="text-red italic" />
               </FormItem>
             )}
           />
@@ -109,7 +118,7 @@ const SignupForm = () => {
                   <Input type="password" className="shad-input" {...field} />
                 </FormControl>
 
-                <FormMessage className="text-red italic"/>
+                <FormMessage className="text-red italic" />
               </FormItem>
             )}
           />
@@ -127,10 +136,10 @@ const SignupForm = () => {
 
 
           <p className="text-small-regular text-light-2 text-center mt-2">
-            Já posssui uma conta? <Link to={"/sign-in"} className="text-primary-500 hover:underline ease-in-out hover:font-bold">Clique aqui</Link>
+            Já posssui uma conta? <Link to={"/sign-in"} className="text-primary-500 hover:underline ease-in-out hover:font-bold hover:text-secondary-500">Clique aqui</Link>
           </p>
 
-          
+
         </form>
       </div>
     </Form>
