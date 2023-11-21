@@ -38,14 +38,14 @@ const SignupForm = () => {
   async function onSubmit(values: z.infer<typeof SignupValidation>) {
     const newUser = await createUserAccount(values);
     if (!newUser) {
-      return  toast({
+      return toast({
         title: "Falha no cadastro",
         description: "Por favor, tente novamente.",
       });
     }
+    // Stopped at 1:31:15
 
 
-   
   }
 
 
@@ -136,7 +136,7 @@ const SignupForm = () => {
 
 
           <p className="text-small-regular text-light-2 text-center mt-2">
-            Já posssui uma conta? <Link to={"/sign-in"} className="text-primary-500 hover:underline ease-in-out hover:font-bold hover:text-secondary-500">Clique aqui</Link>
+            Já posssui uma conta? <Link to={"/sign-in"} className="text-primary-500 hover:underline ease-in-out hover:font-bold hover:text-primary-600">Clique aqui</Link>
           </p>
 
 
