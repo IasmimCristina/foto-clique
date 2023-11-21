@@ -58,7 +58,7 @@ const SignupForm = () => {
     })
 
     if (!session) {
-      return toast({ title: 'Falha no cadastro', description: "Por favor, tente novamente." })
+      return toast({ title: 'Falha no cadastro', description: "Por favor, tente novamente.", variant: "destructive" })
     }
 
 
@@ -68,7 +68,7 @@ const SignupForm = () => {
       form.reset();
       navigate('/')
     } else {
-      return toast({ title: 'Falha no login', description: 'Por favor, tente novamente.' })
+      return toast({ title: 'Falha no login', description: 'Por favor, tente novamente.', variant: "destructive" })
     }
 
   }
