@@ -267,7 +267,7 @@
 
   /* Topbar */
   .topbar {
-    @apply sticky top-0 z-50 md:hidden bg-dark-2 w-full;
+    @apply sticky top-0 z-50 md:hidden bg-dark-3 w-full;
   }
 
   /* User card */
@@ -305,6 +305,6 @@
   }
 
   .shad-button_ghost {
-    @apply flex gap-4 items-center justify-start hover:bg-transparent hover:text-white !important;
+    @apply flex gap-4 items-center justify-start   hover:bg-secondary-700-opacity rounded-full ease-in-out duration-300 !important;
   }
 }
