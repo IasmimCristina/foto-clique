@@ -90,5 +90,5 @@ export async function signOutAccount() {
   } catch (error) {
     console.log(error);
   }
-  // 2:21:38, commit style e feat
+ 
 }
