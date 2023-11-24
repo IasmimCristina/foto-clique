@@ -59,7 +59,7 @@ const LeftSidebar = () => {
 
         </div>
 
-        {/* stopped at 2:37:59 */}
+       
         <Button variant="ghost" className='shad-button_ghost p-7 ' onClick={() => signOut()}>
 
           <img src="/assets/icons/logout.svg" alt="Desconectar" />
