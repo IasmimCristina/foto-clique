@@ -9,11 +9,11 @@ import {
 import { Input } from "@/components/ui/input"
 import { Button } from '@/components/ui/button'
 import { useForm } from "react-hook-form"
-import { SigninValidation  } from "@/lib/validation"
+import { SigninValidation } from "@/lib/validation"
 import { z } from "zod"
-import { Loader } from "lucide-react"
+import Loader from "@/components/shared/Loader";
 import { Link, useNavigate } from "react-router-dom"
-import {  useSignInAccount } from "@/lib/react-query/queriesAndMutations"
+import { useSignInAccount } from "@/lib/react-query/queriesAndMutations"
 import { useUserContext } from "@/context/AuthContext"
 
 
@@ -27,9 +27,10 @@ const SigninForm = () => {
 
 
 
+  // Query
+  const { mutateAsync: signInAccount, isPending } = useSignInAccount();
 
 
-  // 1. Define your form.
   const form = useForm<z.infer<typeof SigninValidation>>({
     resolver: zodResolver(SigninValidation),
     defaultValues: {
@@ -39,31 +40,28 @@ const SigninForm = () => {
   })
 
 
-  const { mutateAsync: signInAccount, isPending } = useSignInAccount();
 
-  // 2. Define a submit handler.
-  async function onSubmit(values: z.infer<typeof SigninValidation>) {
-  
-    const session = await signInAccount({
-      email: values.email,
-      password: values.password
-    })
+  const handleSignin = async (user: z.infer<typeof SigninValidation>) => {
+    const session = await signInAccount(user);
 
     if (!session) {
-      return toast({ title: 'Falha no cadastro', description: "Por favor, tente novamente.", variant: "destructive" })
-    }
+      toast({ title: "Houve um erro. Por favor, tente novamente." });
 
+      return;
+    }
 
     const isLoggedIn = await checkAuthUser();
 
     if (isLoggedIn) {
       form.reset();
-      navigate('/')
-    } else {
-      return toast({ title: 'Falha no login', description: 'Por favor, tente novamente.', variant: "destructive" })
-    }
 
-  }
+      navigate("/");
+    } else {
+      toast({ title: "Houve um erro. Por favor, tente novamente.", });
+
+      return;
+    }
+  };
 
 
   return (
@@ -81,8 +79,8 @@ const SigninForm = () => {
         <p className="text-light-3 small-medium md:base-regular mb-2">Olá novamente, insira seus dados abaixo</p>
 
 
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 flex flex-col  w-full mt-2">
- 
+        <form onSubmit={form.handleSubmit(handleSignin)} className="space-y-8 flex flex-col  w-full mt-2">
+
           <FormField
             control={form.control}
             name="email"
@@ -113,7 +111,7 @@ const SigninForm = () => {
           />
           <Button type="submit" className="shad-button_primary">
 
-            {isUserLoading ? (
+            {isPending || isUserLoading ? (
               <div className="flex-center gap-2">
                 <Loader />  Carregando...
               </div>
