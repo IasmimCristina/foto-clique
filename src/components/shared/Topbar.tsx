@@ -25,15 +25,16 @@ const Topbar = () => {
 
         <div className="flex gap-4">
 
-          <Button variant="ghost" className='shad-button_ghost' onClick={() => signOut()}>
 
-            <img src="/assets/icons/logout.svg" alt="Desconectar" />
-          </Button>
 
           <Link to={`/profile/${user.id}`} className='flex-center gap-3'>
 
             <img src={user.imageUrl || 'assets/images/profile-placeholder.svg'} alt="Perfil" className='h-9 rounded-full border-2 border-primary-500 hover:opacity-50   ease-in-out duration-300' />
           </Link>
+          <Button variant="ghost" className='shad-button_ghost' onClick={() => signOut()}>
+
+            <img src="/assets/icons/logout.svg" alt="Desconectar" />
+          </Button>
         </div>
       </div>
     </section>

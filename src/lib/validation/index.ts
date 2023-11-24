@@ -29,5 +29,5 @@ export const SigninValidation = z.object({
     .email({ message: "Por favor, insira um endereço de e-mail válido." }),
   password: z
     .string()
-    .min(8, { message: "A senha deve ter pelo menos 8 caracteres." }),
+    .min(8, { message: "Senha inválida." }),
 });

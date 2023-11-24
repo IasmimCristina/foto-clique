@@ -17,41 +17,37 @@
 /* START: SCROLL */
 /* WebKit (Safari, Chrome, Opera) */
 ::-webkit-scrollbar {
-  width: 8px; 
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #000000; 
+  background: #000000;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #3E8C75; 
-  border-radius: 6px; 
+  background-color: #3e8c75;
+  border-radius: 6px;
   border: #000000 solid 2px;
 }
-
 
 ::-webkit-scrollbar-horizontal {
   height: 8px; /* Altura da barra de rolagem */
 }
 
 ::-webkit-scrollbar-track-piece {
-  background: #000000; 
+  background: #000000;
 }
 
 ::-webkit-scrollbar-thumb:horizontal {
-  background-color: #3E8C75; 
+  background-color: #3e8c75;
   border-radius: 6px;
   border: #000000 solid 2px;
-
 }
 /* END: SCROLL */
-
 
 /* START: Specific styling modules from a page */
 
 .image-styling {
-
 }
 
 /* END: Specific styling modules from a page */
@@ -131,7 +127,6 @@
     @apply flex justify-start items-center;
   }
 
-
   .common-container {
     @apply flex flex-col flex-1 items-center gap-10 overflow-scroll py-10 px-5 md:px-8 lg:p-14 custom-scrollbar;
   }
@@ -139,7 +134,7 @@
   /* Sign Forms */
 
   .image-styling {
-    @apply hidden xl:block h-screen w-1/2
+    @apply hidden xl:block h-screen w-1/2;
   }
 
   /* All Users */
@@ -249,11 +244,29 @@
 
   /* Left sidebar */
   .leftsidebar {
-    @apply hidden md:flex px-6 py-10 flex-col justify-between min-w-[270px] bg-dark-2;
+    @apply hidden md:flex  flex-col  min-w-[270px] bg-dark-2 ;
   }
 
   .leftsidebar-link {
-    @apply rounded-lg base-medium hover:bg-primary-500 transition;
+    @apply base-medium hover:bg-primary-500 transition;
+  }
+
+  /* Pulse effect */
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .leftsidebar-link:hover {
+    animation: pulse 1s infinite;
+    transition: transform 0.3s ease-in-out;
   }
 
   /* Post Card */
