@@ -46,8 +46,8 @@ export async function saveUserToDB(user: {
 }) {
   try {
     const newUser = await databases.createDocument(
-      "655bb71c38faf1bec7c1",
-      "655bb78c6fe1a2adca05",
+      "6560fcb44f863fa7eb60",
+      "6560fd1ca8793ef03f05",
       ID.unique(),
       user
     );
@@ -79,7 +79,7 @@ export async function getAccount() {
     console.log(error);
   }
 }
-// CONSERTA RPERMISSÃO!
+
 
 // ============================== GET USER
 export async function getCurrentUser() {
@@ -89,8 +89,8 @@ export async function getCurrentUser() {
     if (!currentAccount) throw Error;
 
     const currentUser = await databases.listDocuments(
-      "655bb71c38faf1bec7c1",
-      "655bb78c6fe1a2adca05",
+      "6560fcb44f863fa7eb60",
+      "6560fd1ca8793ef03f05",
       [Query.equal("accountId", currentAccount.$id)]
     );
 
@@ -138,8 +138,8 @@ export async function createPost(post: INewPost) {
 
     // Create post
     const newPost = await databases.createDocument(
-      "655bb71c38faf1bec7c1",
-      "655bb76120399dcab308",
+      "6560fcb44f863fa7eb60",
+      "6560fce5d41349a7ae2d",
       ID.unique(),
       {
         creator: post.userId,
@@ -166,7 +166,7 @@ export async function createPost(post: INewPost) {
 export async function uploadFile(file: File) {
   try {
     const uploadedFile = await storage.createFile(
-      "655bb57d3b590279fa19",
+      "6560fc8c950f8d7a962a",
       ID.unique(),
       file
     );
@@ -181,7 +181,7 @@ export async function uploadFile(file: File) {
 export function getFilePreview(fileId: string) {
   try {
     const fileUrl = storage.getFilePreview(
-      "655bb57d3b590279fa19",
+      "6560fc8c950f8d7a962a",
       fileId,
       2000,
       2000,
@@ -200,7 +200,7 @@ export function getFilePreview(fileId: string) {
 // ============================== DELETE FILE
 export async function deleteFile(fileId: string) {
   try {
-    await storage.deleteFile("655bb57d3b590279fa19", fileId);
+    await storage.deleteFile("6560fc8c950f8d7a962a", fileId);
 
     return { status: "ok" };
   } catch (error) {
@@ -212,8 +212,8 @@ export async function deleteFile(fileId: string) {
 export async function searchPosts(searchTerm: string) {
   try {
     const posts = await databases.listDocuments(
-      "655bb71c38faf1bec7c1",
-      "655bb76120399dcab308",
+      "6560fcb44f863fa7eb60",
+      "6560fce5d41349a7ae2d",
       [Query.search("caption", searchTerm)]
     );
 
@@ -234,8 +234,8 @@ export async function getInfinitePosts({ pageParam }: { pageParam: number }) {
 
   try {
     const posts = await databases.listDocuments(
-      "655bb71c38faf1bec7c1",
-      "655bb76120399dcab308",
+      "6560fcb44f863fa7eb60",
+      "6560fce5d41349a7ae2d",
       queries
     );
 
@@ -253,8 +253,8 @@ export async function getPostById(postId?: string) {
 
   try {
     const post = await databases.getDocument(
-      "655bb71c38faf1bec7c1",
-      "655bb76120399dcab308",
+      "6560fcb44f863fa7eb60",
+      "6560fce5d41349a7ae2d",
       postId
     );
 
@@ -296,8 +296,8 @@ export async function updatePost(post: IUpdatePost) {
 
     //  Update post
     const updatedPost = await databases.updateDocument(
-      "655bb71c38faf1bec7c1",
-      "655bb76120399dcab308",
+      "6560fcb44f863fa7eb60",
+      "6560fce5d41349a7ae2d",
       post.postId,
       {
         caption: post.caption,
@@ -336,8 +336,8 @@ export async function deletePost(postId?: string, imageId?: string) {
 
   try {
     const statusCode = await databases.deleteDocument(
-      "655bb71c38faf1bec7c1",
-      "655bb76120399dcab308",
+      "6560fcb44f863fa7eb60",
+      "6560fce5d41349a7ae2d",
       postId
     );
 
@@ -355,8 +355,8 @@ export async function deletePost(postId?: string, imageId?: string) {
 export async function likePost(postId: string, likesArray: string[]) {
   try {
     const updatedPost = await databases.updateDocument(
-      "655bb71c38faf1bec7c1",
-      "655bb76120399dcab308",
+      "6560fcb44f863fa7eb60",
+      "6560fce5d41349a7ae2d",
       postId,
       {
         likes: likesArray,
@@ -375,8 +375,8 @@ export async function likePost(postId: string, likesArray: string[]) {
 export async function savePost(userId: string, postId: string) {
   try {
     const updatedPost = await databases.createDocument(
-      "655bb71c38faf1bec7c1",
-      "655bb7a8caa15d116676",
+      "6560fcb44f863fa7eb60",
+      "6560fd3c4c8f7cfa23b8",
       ID.unique(),
       {
         user: userId,
@@ -395,8 +395,8 @@ export async function savePost(userId: string, postId: string) {
 export async function deleteSavedPost(savedRecordId: string) {
   try {
     const statusCode = await databases.deleteDocument(
-      "655bb71c38faf1bec7c1",
-      "655bb7a8caa15d116676",
+      "6560fcb44f863fa7eb60",
+      "6560fd3c4c8f7cfa23b8",
       savedRecordId
     );
 
@@ -414,8 +414,8 @@ export async function getUserPosts(userId?: string) {
 
   try {
     const post = await databases.listDocuments(
-      "655bb71c38faf1bec7c1",
-      "655bb76120399dcab308",
+      "6560fcb44f863fa7eb60",
+      "6560fce5d41349a7ae2d",
       [Query.equal("creator", userId), Query.orderDesc("$createdAt")]
     );
 
@@ -431,8 +431,8 @@ export async function getUserPosts(userId?: string) {
 export async function getRecentPosts() {
   try {
     const posts = await databases.listDocuments(
-      "655bb71c38faf1bec7c1",
-      "655bb76120399dcab308",
+      "6560fcb44f863fa7eb60",
+      "6560fce5d41349a7ae2d",
       [Query.orderDesc("$createdAt"), Query.limit(20)]
     );
 
@@ -458,8 +458,8 @@ export async function getUsers(limit?: number) {
 
   try {
     const users = await databases.listDocuments(
-      "655bb71c38faf1bec7c1",
-      "655bb78c6fe1a2adca05",
+      "6560fcb44f863fa7eb60",
+      "6560fd1ca8793ef03f05",
       queries
     );
 
@@ -475,8 +475,8 @@ export async function getUsers(limit?: number) {
 export async function getUserById(userId: string) {
   try {
     const user = await databases.getDocument(
-      "655bb71c38faf1bec7c1",
-      "655bb78c6fe1a2adca05",
+      "6560fcb44f863fa7eb60",
+      "6560fd1ca8793ef03f05",
       userId
     );
 
@@ -514,8 +514,8 @@ export async function updateUser(user: IUpdateUser) {
 
     //  Update user
     const updatedUser = await databases.updateDocument(
-      "655bb71c38faf1bec7c1",
-      "655bb78c6fe1a2adca05",
+      "6560fcb44f863fa7eb60",
+      "6560fd1ca8793ef03f05",
       user.userId,
       {
         name: user.name,
