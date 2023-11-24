@@ -25,10 +25,6 @@ const SignupForm = () => {
   const navigate = useNavigate();
   const { checkAuthUser, isLoading: isUserLoading } = useUserContext()
 
-
-
-
-
   // 1. Define your form.
   const form = useForm<z.infer<typeof SignupValidation>>({
     resolver: zodResolver(SignupValidation),
@@ -77,8 +73,6 @@ const SignupForm = () => {
   return (
 
     <Form {...form}>
-
-
 
       <div className="sm:w-420 flex-center flex-col py-6">
         <img src="/assets/images/logo.png" alt="Logomarca" className="lg:h-[130px] sm:h-[110px] h-[80px] md:mt-0 sm:mt-2 mt-6" />
