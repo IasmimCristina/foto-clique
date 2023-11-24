@@ -1,10 +1,15 @@
-import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
-import { Button } from '../ui/button'
-import { useSignOutAccount } from '@/lib/react-query/queriesAndMutations'
-import { useEffect } from 'react';
-import { useUserContext } from '@/context/AuthContext';
-import { sidebarLinks } from '@/constants';
-import { INavLink } from '@/types';
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+
+import { INavLink } from "@/types";
+import { sidebarLinks } from "@/constants";
+// import { Loader } from "@/components/shared";
+import { Button } from "@/components/ui/button";
+import { useSignOutAccount } from "@/lib/react-query/queries";
+import {
+  useUserContext,
+  // INITIAL_USER
+} from "@/context/AuthContext";
+import { useEffect } from "react";
 
 const LeftSidebar = () => {
 
@@ -13,10 +18,10 @@ const LeftSidebar = () => {
 
   const navigate = useNavigate();
   const { user } = useUserContext();
-
   useEffect(() => {
     if (isSuccess) navigate(0);
-  }, [isSuccess]);
+  }, [isSuccess, navigate]);
+
   return (
     <nav className='leftsidebar'>
       <Link to={"/"} className='flex py-4 gap-3 items-center bg-dark-1 w-full '>
@@ -59,7 +64,7 @@ const LeftSidebar = () => {
 
         </div>
 
-       
+
         <Button variant="ghost" className='shad-button_ghost p-7 ' onClick={() => signOut()}>
 
           <img src="/assets/icons/logout.svg" alt="Desconectar" />

@@ -1,8 +1,9 @@
-import { Link, useNavigate } from 'react-router-dom'
-import { Button } from '../ui/button'
-import { useSignOutAccount } from '@/lib/react-query/queriesAndMutations'
-import { useEffect } from 'react';
-import { useUserContext } from '@/context/AuthContext';
+import { Link, useNavigate } from "react-router-dom";
+
+import { Button } from "../ui/button";
+import { useUserContext } from "@/context/AuthContext";
+import { useSignOutAccount } from "@/lib/react-query/queries";
+import { useEffect } from "react";
 
 const Topbar = () => {
 
@@ -13,7 +14,8 @@ const Topbar = () => {
 
   useEffect(() => {
     if (isSuccess) navigate(0);
-  }, [isSuccess]);
+  }, [isSuccess, navigate]);
+  
 
   return (
     <section className="topbar">
@@ -33,7 +35,7 @@ const Topbar = () => {
           </Link>
           <Button variant="ghost" className='shad-button_ghost' onClick={() => signOut()}>
 
-            <img src="/assets/icons/logout.svg" alt="Desconectar"  height={18} width={18}/>
+            <img src="/assets/icons/logout.svg" alt="Desconectar" height={18} width={18} />
           </Button>
         </div>
       </div>
