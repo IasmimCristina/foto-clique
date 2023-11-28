@@ -31,3 +31,10 @@ export const SigninValidation = z.object({
     .string()
     .min(8, { message: "Senha inválida." }),
 });
+
+export const PostValidation = z.object({
+  caption: z.string().min(5, { message: "Legenda muito curta." }).max(2200),
+  file: z.custom<File[]>(),
+  location: z.string().min(2, { message: "Localização muito curta." }).max(100),
+  tags: z.string(),
+});

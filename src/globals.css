@@ -224,8 +224,6 @@
     @apply invert-white;
   }
 
-
-
   /* File uploader */
   .file_uploader-img {
     @apply h-80 lg:h-[480px] w-full rounded-[24px] object-cover object-top;
@@ -236,7 +234,7 @@
   }
 
   .file_uploader-box {
-    @apply flex-center flex-col p-7 h-80 lg:h-[612px];
+    @apply flex-center flex-col w-full p-7 h-80 lg:h-[612px] hover:border hover:bg-dark-4 border-light-3 ease-in-out duration-100 rounded-xl;
   }
 
   /* Grid Post List */
@@ -254,7 +252,7 @@
 
   /* Left sidebar */
   .leftsidebar {
-    @apply hidden md:flex  flex-col  min-w-[270px] bg-dark-2 ;
+    @apply hidden md:flex  flex-col  min-w-[270px] bg-dark-2;
   }
 
   .leftsidebar-link {
@@ -274,7 +272,8 @@
     }
   }
 
-  .leftsidebar-link:hover, .bottombar-link:hover {
+  .leftsidebar-link:hover,
+  .bottombar-link:hover {
     animation: pulse 1s infinite;
     transition: transform 0.3s ease-in-out;
   }
@@ -311,7 +310,7 @@
   }
 
   .shad-input {
-    @apply h-12 bg-dark-4 border-none placeholder:text-light-4 focus-visible:ring-1 focus-visible:ring-offset-1 ring-offset-light-3 !important;
+    @apply h-12 bg-dark-4 border-none placeholder:text-light-4  focus-visible:ring-1 focus-visible:ring-offset-1 ring-offset-light-3 !important;
   }
 
   .shad-textarea {
@@ -322,9 +321,12 @@
   .shad-button_primary {
     @apply bg-primary-500  hover:bg-primary-600 hover:border-2 hover:text-light-1 text-black flex gap-2 ease-in-out duration-300 font-bold   !important;
   }
+  .shad-button_secondary {
+    @apply h-12 bg-secondary-500 px-5 text-dark-4 font-bold hover:text-secondary-500 hover:bg-dark-3 flex gap-2 duration-300 ease-in-out !important;
+  }
 
   .shad-button_dark_4 {
-    @apply h-12 bg-dark-4 px-5 text-light-1 flex gap-2 !important;
+    @apply font-bold h-12 bg-dark-4 px-5 text-secondary-500 hover:text-light-1 hover:bg-secondary-700-opacity flex gap-2 duration-300 ease-in-out !important;
   }
 
   .shad-button_ghost {

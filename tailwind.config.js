@@ -21,7 +21,7 @@ module.exports = {
     extend: {
       colors: {
         'primary-500': '#7fd1b9',
-        'primary-600': '#3E8C75',
+        'primary-600': '#3E8C72',
         'secondary-500': '#f97068',
         'secondary-700-opacity': 'rgba(158, 66, 61, 0.5)',
         'off-white': '#d3ebe4',
@@ -33,7 +33,7 @@ module.exports = {
         'light-1': '#FFFFFF',
         'light-2': '#EFEFEF',
         'light-3': '#9ce8d1',
-        'light-4': '#72b5a1',
+        'light-4': 'rgba(115, 181, 161, 0.5)',
       },
       screens: {
         'xs': '480px',
