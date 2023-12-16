@@ -3,6 +3,7 @@ import { formatDateString } from '@/lib/utils';
 import { Models } from 'appwrite';
 import React from 'react'
 import { Link } from 'react-router-dom';
+import PostStats from './PostStats';
 
 
 type PostCardProps = {
@@ -33,7 +34,7 @@ const PostCard = ({ post }: PostCardProps) => {
           </div>
         </div>
         <Link to={`/update-post/${post.$id}`} className={`${user.id !== post.creator.$id && "hidden"}  `}>
-          <img src="/assets/icons/edit.svg" alt="Edite" width={20} height={20} className='hover:bg-secondary-700-opacity ease-in-out duration-300 rounded-md ' />
+          <img src="/assets/icons/edit.svg" alt="Edite" width={20} height={20} className='hover:w-6 ease-in-out duration-300 rounded-md ' />
         </Link>
 
 
@@ -54,6 +55,8 @@ const PostCard = ({ post }: PostCardProps) => {
         </div>
         <img src={post.imageUrl || "assets/icons/profile-placeholder.svg"} alt="Imagem da postagem"  className='post-card_img'/>
       </Link>
+
+      <PostStats  post={post} userId={user.id} />
     </div>
   )
 }
