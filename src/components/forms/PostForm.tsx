@@ -19,19 +19,21 @@ import { PostValidation } from "@/lib/validation"
 import { Models } from "appwrite"
 import { useUserContext } from "@/context/AuthContext"
 import { useToast } from "../ui/use-toast"
-import { useCreatePost } from "@/lib/react-query/queriesAndMutations";
+import { useCreatePost, useUpdatePost } from "@/lib/react-query/queriesAndMutations";
 import Loader from "../shared/Loader";
 
 
 
 type PostFormProps = {
   post?: Models.Document
+  action: 'Create' | 'Update'
 }
 
-const PostForm = ({ post }: PostFormProps) => {
- const {toast} = useToast(); 
- const navigate = useNavigate();
+const PostForm = ({ post, action }: PostFormProps) => {
+  const { toast } = useToast();
+  const navigate = useNavigate();
   const { mutateAsync: createPost, isPending: isLoadingCreate } = useCreatePost();
+  const { mutateAsync: updatePost, isPending: isLoadingUpdate } = useUpdatePost();
 
   const { user } = useUserContext();
   // 1. Define your form.
@@ -49,6 +51,21 @@ const PostForm = ({ post }: PostFormProps) => {
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof PostValidation>) {
+    if (post && action === 'Update') {
+      const updatedPost = await updatePost({
+        ...values,
+        postId: post.$id,
+        imageId: post?.imageId,
+        imageUrl: post?.imageUrl
+      })
+
+      if (!updatedPost) {
+        toast({ title: 'Por favor, tente novamente.' })
+      }
+
+      return navigate(`posts/${post.$id}`)
+    }
+
     const newPost = await createPost({
       ...values,
       userId: user.id,
@@ -85,7 +102,7 @@ const PostForm = ({ post }: PostFormProps) => {
           name="file"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="shad-form_label">Adidionar fotos</FormLabel>
+              <FormLabel className="shad-form_label">Foto(s)</FormLabel>
               <FormControl>
                 <FileUploader
 
@@ -104,7 +121,7 @@ const PostForm = ({ post }: PostFormProps) => {
           name="location"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="shad-form_label">Adicionar localização</FormLabel>
+              <FormLabel className="shad-form_label">Localização</FormLabel>
               <FormControl>
                 <Input type="text" className="shad-input" {...field} />
               </FormControl>
@@ -118,7 +135,7 @@ const PostForm = ({ post }: PostFormProps) => {
           name="tags"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="shad-form_label">Adicionar tags(separadas por vírgula " , ")</FormLabel>
+              <FormLabel className="shad-form_label">Tags(separadas por vírgula " , ")</FormLabel>
               <FormControl>
                 <Input type="text" className="shad-input"
                   placeholder="NextJS, Culinária, Mecânica" {...field}
@@ -131,13 +148,13 @@ const PostForm = ({ post }: PostFormProps) => {
         <div className="flex gap-4 items-center justify-between">
           <Button type="button" className="shad-button_dark_4">Cancelar</Button>
           <Button type="submit" className="shad-button_primary"
-           disabled={isLoadingCreate }
+            disabled={isLoadingCreate || isLoadingUpdate}
           >
-             {(isLoadingCreate ) && <Loader />}
-          
-            
-            Postar
-            </Button>
+            {(isLoadingCreate) && <Loader />}
+
+            {isLoadingCreate || isLoadingUpdate && 'Carregando... '}
+            {action == 'Create' ? " Criar" : " Editar"} postagem
+          </Button>
 
         </div>
       </form>
