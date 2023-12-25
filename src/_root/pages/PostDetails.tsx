@@ -1,18 +1,41 @@
 import Loader from '@/components/shared/Loader';
 import PostStats from '@/components/shared/PostStats';
 import { Button } from '@/components/ui/button';
+import { toast } from '@/components/ui/use-toast';
 import { useUserContext } from '@/context/AuthContext';
-import { useGetPostById } from '@/lib/react-query/queriesAndMutations'
+import { useDeletePost, useDeleteSavedPost, useGetPostById } from '@/lib/react-query/queriesAndMutations'
 import { formatDateString } from '@/lib/utils';
 import React from 'react'
-import { Link, useParams } from 'react-router-dom';
+import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 
 const PostDetails = () => {
+  const navigate = useNavigate();
 
-  const { id } = useParams()
+  const { id } = useParams();
+  const { mutate: deletePost } = useDeletePost();
+
   const { data: post, isPending } = useGetPostById(id || '');
   const { user } = useUserContext();
-  const handleDeletePost = () => { };
+
+  const handleDeletePost = () => {
+    if (post !== undefined) {
+
+      deletePost({ postId: id, imageId: post?.imageId });
+      toast({
+        title: "Apagando postagem...",
+      })
+      navigate(-1);
+
+    }
+    else {
+      toast({
+        title: "Erro",
+        description: "Por favor, tente novamente.",
+      })
+    }
+
+  };
+
 
   return (
     <div className="post_details-container">
@@ -46,7 +69,7 @@ const PostDetails = () => {
                 </Link>
 
 
-                <Button onclick={handleDeletePost}
+                <Button onClick={handleDeletePost}
                   variant={"ghost "}
                   className={`ghost_details-delete_btn ${user.id !== post?.creator.$id && 'hidden'}`}
                 >
@@ -74,7 +97,7 @@ const PostDetails = () => {
             </div>
 
             <div className="w-full">
-            <PostStats  post={post} userId={user.id} />
+              <PostStats post={post} userId={user.id} />
 
             </div>
 
