@@ -147,13 +147,13 @@ const PostForm = ({ post, action }: PostFormProps) => {
         />
         <div className="flex gap-4 items-center justify-between">
           <Button type="button" className="shad-button_dark_4"  onClick={() => navigate('/')}>Cancelar</Button>
-          <Button type="submit" className="shad-button_primary"
-            disabled={isLoadingCreate || isLoadingUpdate}
-          >
-            {(isLoadingCreate) && <Loader />}
 
-            {isLoadingCreate || isLoadingUpdate && 'Carregando... '}
-            {action == 'Create' ? " Criar" : " Editar"} postagem
+          <Button
+            type="submit"
+            className="shad-button_primary whitespace-nowrap"
+            disabled={isLoadingCreate || isLoadingUpdate}>
+            {(isLoadingCreate || isLoadingUpdate) && <Loader />}
+            {action == 'Create' ? " Criar" : " Editar"}  Postagem
           </Button>
 
         </div>
