@@ -7,7 +7,7 @@ export function cn(...inputs: ClassValue[]) {
 
 export const convertFileToUrl = (file: File) => URL.createObjectURL(file);
 
-export function formatDateString(dateString: string) {
+export function formatDateString(dateString: string ) {
   const date = new Date(dateString);
   const now = new Date();
   const difference = now.getTime() - date.getTime();

@@ -11,7 +11,7 @@ const RootLayout = () => {
       <Topbar />
       <LeftSidebar />
 
-      <section className="flex flex-1">
+      <section className="flex flex-1 h-full pt-5 lg:pt-0">
         {/* Its an outlet because this layout is used as a route element in App.tsx */}
         <Outlet />
       </section>
