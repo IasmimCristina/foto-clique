@@ -50,15 +50,21 @@ FotoClique é uma rede social simplificada, criada com o objetivo de aprimorar h
 
 <h3 align="center">Versão Mobile</h3>
 
-<img src="https://github.com/IasmimCristina/foto-clique/assets/100351576/54d89bb4-482b-4e28-90c8-a0503b3fdfd0" width="200" />
-<img src="https://github.com/IasmimCristina/foto-clique/assets/100351576/05785cfe-57e3-422a-b797-2d6c89effafd" width="200" />
-<img src="https://github.com/IasmimCristina/foto-clique/assets/100351576/dc2216d3-3e06-4ca0-a47c-e3b66d1c8b8d" width="200" />
+<p align="center">
+  <img src="https://github.com/IasmimCristina/foto-clique/assets/100351576/54d89bb4-482b-4e28-90c8-a0503b3fdfd0" width="200" />
+  <img src="https://github.com/IasmimCristina/foto-clique/assets/100351576/05785cfe-57e3-422a-b797-2d6c89effafd" width="200" />
+  <img src="https://github.com/IasmimCristina/foto-clique/assets/100351576/dc2216d3-3e06-4ca0-a47c-e3b66d1c8b8d" width="200" />
+</p>
 
 <h3 align="center">Versão Desktop</h3>
 
-<img src="https://github.com/IasmimCristina/foto-clique/assets/100351576/eb4a0048-b259-4294-9813-6bc16f90c284" width="300" />
-<img src="https://github.com/IasmimCristina/foto-clique/assets/100351576/551c233c-52e2-4310-8601-1f1a601a1d42" width="300" />
-<img src="https://github.com/IasmimCristina/foto-clique/assets/100351576/d2258cd6-de53-4787-a4bb-24a47694a7d3" width="300" />
+<p align="center">
+  <img src="https://github.com/IasmimCristina/foto-clique/assets/100351576/eb4a0048-b259-4294-9813-6bc16f90c284" width="300" />
+  <img src="https://github.com/IasmimCristina/foto-clique/assets/100351576/551c233c-52e2-4310-8601-1f1a601a1d42" width="300" />
+  <img src="https://github.com/IasmimCristina/foto-clique/assets/100351576/d2258cd6-de53-4787-a4bb-24a47694a7d3" width="300" />
+</p>
+
+
 
 ## Conceitos Aprendidos 📚
 
